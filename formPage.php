@@ -214,7 +214,7 @@ body {
 <div class="content">Refluxis Matratzen-Konfigurator</div>
 </header>
 <main>
-<form id="regForm" action="result.php">
+<form id="regForm" action="result1.php">
 
   <!-- Circles which indicates the steps of the form: -->
   <div style="text-align:center;margin-top:40px;">
