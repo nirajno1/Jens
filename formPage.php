@@ -3,14 +3,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/** {
-  box-sizing: border-box;
-}*/
-
-main {
-  background-color: #e7e7e7;
-}
-
 
 .question input{
   padding: 10px;
@@ -34,8 +26,9 @@ main {
 .note .head{
 display: block;
 font-style: normal;
-font-size: larger;
+font-size: small;
 font-weight: bold;
+color:#c40000;
 }
 .note .noteitem{
 display: block;
@@ -43,14 +36,7 @@ font-style: oblique;
 font-size: small;
 font-weight: lighter;
 }
-#regForm {
-  background-color: #ffffff;
-  margin: 100px auto;
-  font-family: Arial;
-  padding: 40px;
-  width: 70%;
-  min-width: 300px;
-}
+
 
 h1 {
   text-align: center;  
@@ -65,17 +51,17 @@ input {
 }
 
 input[type=radio]:checked + label::After{
-    content: '';
-    width: 30%;
-    background-color: #2eae06;
-    height: 15px;
-  width: 15px;
+    content: '  \2713';
+    /*width: 30%;*/
+   /* background-color: #2eae06;*/
+ /*   height: 15px;
+  width: 15px;*/
   margin: 0 2px;
-
+color: #2eae06;
   border: none;  
-  border-radius: 50%;
+  /*border-radius: 50%;*/
   display: inline-block;
-  opacity: 0.5;
+
 }
 .consultation {
   border-radius: 20px;
@@ -96,11 +82,12 @@ display: block;
 font-style: normal;
 font-size: larger;
 font-weight: bold;
-opacity:1;
+color: #c40000;
 }
-img {
-  height: 4em;
+.logo {
+  height: 45px;
 }
+
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
   background-color: #ffdddd;
@@ -137,8 +124,8 @@ button:hover {
 
 /* Make circles that indicate the steps of the form: */
 .step {
-  height: 25px;
-  width: 25px;
+  height: 15px;
+  width: 15px;
   margin: 0 2px;
   background-color: #e7e7e7;
   border: none;  
@@ -156,90 +143,110 @@ button:hover {
   background-color: #04AA6D;
 }
 
-
-/*.logo {
-    font-size: 12px;
-    font-weight: bold;
-    position: relative;
-    bottom: -10px;
-}*/
-
-
-.logo:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 1px;
-  height: 30px;
-  background-color:grey;
-}
-
-h4 {
-    font-weight: bold;
-}
-
 header {
-  display: grid;
-  grid-template-columns: 300px auto;
-  grid-gap: 10px;
- /*  background-color: #ffffff;*/
- margin-top: 100px;
-  margin-bottom: 100px;
-  margin-right: 150px;
-  margin-left: 80px;
+  background-color: #ffffff;
   font-family: Arial;
-  padding: 40px;
-  width: 70%;
+  padding: 16px;
   min-width: 300px;
-   background-color: #e7e7e7;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: 45% auto;
+  grid-template-rows: 65px;
+}
+#regForm {
+  background-color: #ffffff;
+  
+  font-family: Arial;
+  padding: 10px;
+  /*width: 70%;*/
+  min-width: 300px;
 }
 .content {
-  display: grid;
-}
-header .content {
-  /* align-content: center; */
-  align-items: center;
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 21px;
+  text-align: left;
+  color: #2eae06;
 }
 footer{
-  background-color: #e7e7e7;
+  font-family: Arial;
+  padding: 16px;
+  /*width: 70%;*/
+  min-width: 300px;
+  background-color: #ffffff;
 }
 body {
   margin: 40px;
 }
 .wrapper {
+  max-width: 600px;
+  margin: auto;
   display: grid;
+  grid-template-columns: auto;
   grid-template-rows: 100px auto 100px;
   grid-gap: 1px;
-  background-color: #fff;
+  align-items: center;
+
+  /*background-color: #d95959;*/
+  /*background-color: #fff;*/
   color: #444;
+  min-width: 300px;
 }
+
+.wrapper > div img {
+    max-height: 50%;
+    display: block;
+}
+.answer > p {
+  margin: 0px;
+}
+
 </style>
 <body>
   <div class="wrapper">
 <header>
-  <div class="logo">
-  <figure>
-    <img src="./images/logo-refluxis-neu_logo.png"/>
+
+
     
-</figure>
-</div>
-<div class="content">Refluxis Mattress Configurator</div>
+    <img class="logo" src="./images/logo-refluxis-neu_logo.png"/>
+
+
+<div class="content">Refluxis Matratzen-Konfigurator</div>
 </header>
 <main>
 <form id="regForm" action="result.php">
 
- 
-
-    <!-- Circles which indicates the steps of the form: -->
+  <!-- Circles which indicates the steps of the form: -->
   <div style="text-align:center;margin-top:40px;">
     <span class="step"></span>
     <span class="step"></span>
     <span class="step"></span>
-    <span class="step"></span>
+    <span class="step"></span> 
+    <span class="step" style="display: none;"></span>
 
   </div>
   <!-- One "tab" for each step in the form: -->
+  <div class="tab">
+    <div class="consultation">
+      <div class="note">
+ <p class="noteitem">Du benötigst eine Matratze? Dieser Matratzen-Konfigurator soll Dir helfen, die Richtige zu finden. Wir erläutern Dir die unterschiedlichen Materialien und unterstützen Dich darin, dass richtig für Dich zu finden. Du musst uns ein paar Fragen beantworten, damit wir Dir die passenden Produkte zeigen können. Deine Schlafgewohnheiten, Preisvorstellungen und natürlich auch Deine körperliche Situation möchten wir mit einbeziehen.
+</p>
+<p class="head">
+WICHTIGE GRUNDSÄTZE DES MATRATZEN-KONFIGURATORS:</p>
+
+<p class="noteitem">Alle Matratzen sind konzipiert für einen Schlaf auf der Seite. Durch den Schlaf auf der Seite hast Du die größtmögliche Entlastung Deiner Wirbelsäule und Dein Körper kann perfekt regenerieren.</p>
+
+<p class="noteitem">Alle Matratzen werden für eine Schlaftemperatur von 14-18 Grad gefertigt. Genau in diesem Temperaturfenster sprechen wir vom gesunden Schlaf.</p>
+
+<p class="noteitem">Alle Matratzen sind allergikerfreundlich durch abnehmbaren und waschbaren Bezug.</p>
+
+<p class="head">DIESES ZIEL SOLLTEST DU VERFOLGEN:</p>
+
+<p class="noteitem">Im Kern geht es darum, dass Deine Wirbelsäule beim schlafen möglichst gerade ist und das möglichst wenig Druckpunkte auf Deinen Körper lasten. Das ist der Schlüssel zum gesunden Schlaf.
+
+<p class="noteitem">Kann es losgehen? Dann geh auf weiter</p>
+</div></div>
+    </div>
   <div class="tab">
   <div class="question" >
     <p>Wie schläfst Du gerne?</p>
@@ -275,7 +282,7 @@ Festes Liegegefühl - schlechte Druckentlastung.</p>
         <label for="n">Nein</label><br>
  </div>
      <div class="consultation">
-      <p class="beratung">Beratung</p>
+      <p class="beratung">Beratung  <span class="line" /></p>
       <p>Ein bisschen schwitzen ist ganz normal. In der Nacht schwitzen wir ca. 0,5 Liter aus. Wenn Du nachts öfter nass bzw. Schweißgebadet aufwachst, egal ob Winter oder Sommer, solltest Du die Frage mit "Ja" beantworten.</p>
       <p>Keine Matratze bringt Dich zum Schwitzen. Das schwitzen kommt in den meisten Fällen vom Körper. Wichtig ist, wie die Matratze mit dieser Feuchtigkeit umgeht. Nur 20-30 % der entstehenden Feuchtigkeit geht in die Matratze. Der Rest geht nach oben weg als Wasserdampf. Wer also nachts stark schwitzt und immer noch unter einer Daunendecke schläft, darf sich nicht wundern, dass es Probleme mit zu viel Feuchtigkeit im Bett gibt. Die Wärme kann nicht entweichen und bleibt beim Körper.</p>
 <p>Durch die richtige Wahl der Materialien kannst Du mit einem weichen Liegegefühl schlafen und trotzdem dem Schwitzen entgegenwirken.</p>
@@ -295,7 +302,7 @@ Festes Liegegefühl - schlechte Druckentlastung.</p>
             <label for="h5">ab ca. 120 kg [Normalgewicht lt. BMI-Wert] (H5)</label><br>
   </div>
    <div class="consultation">
-      <p class="beratung">Beratung</p>
+      <p class="beratung">Beratung  <span class="line" /></p>
       <p>Wir brauchen Dein Körpergewicht, um Deine Matratzenauswahl so genau wie möglich einzugrenzen. Beachte bitte auch Dein Alter und Deine Körpergröße. Matratzen bekommst Du in verschiedenen Festigkeiten.</p>
       <p>In der Regel zählt:<br>
 bis 80 kg Körpergewicht nimmst Du Härte 2 (H2)<br>
@@ -331,11 +338,13 @@ ab 120 kg Körpergewicht nimmst Du Härte 5 (H5)</p>
     <input type="radio" name="price" value="9001200"/>
         <label for="9001200">900 - 1200 Euro</label><br>
   </div>
-  <p class="beratung">Beratung</p>
+  <div class="consultation">
+  <p class="beratung">Beratung  <span class="line" /></p>
       <p>Natürlich entscheidet am Ende das Portemonnaie, wie teuer Deine neue Matratze sein darf. Doch Qualität hat eben doch etwas mit Geld zu tun. Umso hochwertiger die eingesetzten Materialien einer Matratze sind, desto länger ist die Lebensdauer und umso besser ist die Körperanpassung an Deinen Körper.</p>
       <p>Bei vielen Matratzenherstellern bekommst Du mittlerweile auch eine Zufriedenheitsgarantie von bis zu 3 Monaten. Bei Nichtgefallen kannst Du dann gegen eine andere Matratze vom Hersteller tauschen. Sollte dies der Fall sein, werden wir diese Produkte entsprechend kennzeichnen.</p>
       <p>Entscheide selber, was Dir gesunder Schlaf wert ist!</p>
   </div>
+ </div>
   <div style="overflow:auto;">
     <div style="float:right;">
       <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
@@ -346,7 +355,7 @@ ab 120 kg Körpergewicht nimmst Du Härte 5 (H5)</p>
 </form>
 </main>
 <footer>
-  This is footer
+  <!-- This is footer -->
 </footer>
 <script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
