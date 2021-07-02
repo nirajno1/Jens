@@ -83,6 +83,9 @@
 .product-detail-link {
 	text-align: right;
 }
+.product-detail-link a:hover {
+	text-decoration: none;
+}
 
 </style>
 
@@ -91,8 +94,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  
 </head>
-<body class="wrapper">
-    <main>
+<body >
+    <main class="wrapper">
     <?php
 
         if (isset($_GET['pageno'])) {
@@ -100,6 +103,17 @@
         } else {
             $pageno = 1;
         }
+
+        $sleepType= $_GET['sleepType'];  
+        $sweat= $_GET['sweat'];  
+        $weight= $_GET['weight'];  
+        $price=$_GET['price'];  
+
+        $where="where sleep_type='".$sleepType."' and sweat='".$sweat."' and weight='".$weight."'";
+        $priceC=" and search_price between ".$price;
+
+
+
         $no_of_records_per_page = 5;
         $offset = ($pageno-1) * $no_of_records_per_page;
         $dbServerName="192.168.0.121";
@@ -115,12 +129,14 @@
             die();
         }
 
-        $total_pages_sql = "SELECT COUNT(*) FROM PRODUCT";
+        $total_pages_sql = "SELECT COUNT(*) FROM JENS.PRODUCT ".$where.$priceC;
         $result = mysqli_query($conn,$total_pages_sql);
         $total_rows = mysqli_fetch_array($result)[0];
         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-        $sql = "SELECT * FROM PRODUCT LIMIT $offset, $no_of_records_per_page";
+        $sql = "SELECT * FROM JENS.PRODUCT ". $where .$priceC." LIMIT $offset, $no_of_records_per_page";
+        echo $sql . "<br>";
+        echo $total_pages_sql;
         $res_data = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_array($res_data)){
            // while($row = mysqli_fetch_assoc($result)){
@@ -128,7 +144,7 @@
                $product_id=$row["product_id"]; 
                $product_name=$row["product_name"];
                $description=$row["description"];
-               $display_price=$row["display_price"];
+               $search_price=$row["search_price"]; 
                $aw_thumb_url=$row["aw_thumb_url"];
                $aw_image_url=$row["aw_image_url"]; 
                $product_price_old=$row["product_price_old"];
@@ -144,7 +160,7 @@
                    <div class="current-price-txt">Preis</div>
                    <div class="before-price-txt">Alter Preis</div>
                    <div class="product-detail-link"></div>
-                   <div class="current-price">'.$display_price.'</div>
+                   <div class="current-price">'.$search_price.'</div>
                    <div class="before-price">'.$product_price_old.'</div>
                    <div class="product-detail-link">
                        <a class="button" href="#" alt="product name">Weitere Details</a>

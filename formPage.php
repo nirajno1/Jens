@@ -252,12 +252,12 @@ WICHTIGE GRUNDSÄTZE DES MATRATZEN-KONFIGURATORS:</p>
     <p>Wie schläfst Du gerne?</p>
     </div>
     <div class="answer">
-    <p><input type="radio" name="sleepType" value="soft" checked="true"/>
-        <label for="soft">weiches Liegegefühl</label></p>
-    <p><input type="radio" name="sleepType" value="medium"/>
-        <label for="medium">mittleres Liegegefühl</label></p>
-    <p><input type="radio" name="sleepType" value="firm"/>
-        <label for="firm">festes Liegegefühl</label></p>
+    <p><input type="radio" name="sleepType" value="s" checked="true"/>
+        <label for="s">weiches Liegegefühl</label></p>
+    <p><input type="radio" name="sleepType" value="m"/>
+        <label for="m">mittleres Liegegefühl</label></p>
+    <p><input type="radio" name="sleepType" value="f"/>
+        <label for="f">festes Liegegefühl</label></p>
     </div>
     <div class="consultation">
       
@@ -292,14 +292,14 @@ Festes Liegegefühl - schlechte Druckentlastung.</p>
   <!-- tab for question 3 -->
   <div class="tab"><div class="question" >Wieviel wiegst Du?</div>
  <div class="answer">
-        <input type="radio" name="weight" value="h2" checked="true"/>
-            <label for="h2">bis ca. 80 kg [Normalgewicht lt. BMI-Wert] (H2)</label><br>
-        <input type="radio" name="weight" value="h3"/>
-            <label for="h3">bis ca. 100 kg [Normalgewicht lt. BMI-Wert] (H3)</label><br>
-        <input type="radio" name="weight" value="h4"/>
-            <label for="h4">bis ca. 120 kg [Normalgewicht lt. BMI-Wert] (H4)</label><br>
-        <input type="radio" name="weight" value="h5"/>
-            <label for="h5">ab ca. 120 kg [Normalgewicht lt. BMI-Wert] (H5)</label><br>
+        <input type="radio" name="weight" value="H2" checked="true"/>
+            <label for="H2">bis ca. 80 kg [Normalgewicht lt. BMI-Wert] (H2)</label><br>
+        <input type="radio" name="weight" value="H3"/>
+            <label for="H3">bis ca. 100 kg [Normalgewicht lt. BMI-Wert] (H3)</label><br>
+        <input type="radio" name="weight" value="H4"/>
+            <label for="H4">bis ca. 120 kg [Normalgewicht lt. BMI-Wert] (H4)</label><br>
+        <input type="radio" name="weight" value="H5"/>
+            <label for="H5">ab ca. 120 kg [Normalgewicht lt. BMI-Wert] (H5)</label><br>
   </div>
    <div class="consultation">
       <p class="beratung">Beratung  <span class="line" /></p>
@@ -329,14 +329,16 @@ ab 120 kg Körpergewicht nimmst Du Härte 5 (H5)</p>
   <div class="tab">
   <div class="question" >Wieviel würdest Du für Deine Matratze bezahlen?</div>
   <div class="answer">
-    <input type="radio" name="price" value="100300" checked="true"/>
-        <label for="100300">100 - 300 Euro</label><br>
-    <input type="radio" name="price" value="300600"/>
-        <label for="300600">300 - 600 Euro</label><br>
-    <input type="radio" name="price" value="600900"/>
-        <label for="600900">600 - 900 Euro</label><br>
-    <input type="radio" name="price" value="9001200"/>
-        <label for="9001200">900 - 1200 Euro</label><br>
+    <input type="radio" name="price" value="0 and 300" checked="true"/>
+        <label for="0 and 300">100 - 300 Euro</label><br>
+    <input type="radio" name="price" value="300 and 600"/>
+        <label for="300 and 600">300 - 600 Euro</label><br>
+    <input type="radio" name="price" value="600 and 900"/>
+        <label for="600 and 900">600 - 900 Euro</label><br>
+    <input type="radio" name="price" value="900 and 1200"/>
+        <label for="900 and 1200">900 - 1200 Euro</label><br>
+        <input type="radio" name="price" value="1200 and 999999.99"/>
+        <label for="1200 and 999999.99">more than 1200 Euro</label><br>
   </div>
   <div class="consultation">
   <p class="beratung">Beratung  <span class="line" /></p>
