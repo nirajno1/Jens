@@ -89,7 +89,7 @@
 
 </style>
 
-    <title>Pagination</title>
+    <title>Refluxis Matratzen-Konfigurator</title>
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  
@@ -163,7 +163,7 @@
                    <div class="current-price">'.$search_price.'</div>
                    <div class="before-price">'.$product_price_old.'</div>
                    <div class="product-detail-link">
-                       <a class="button" href="#" alt="product name">Weitere Details</a>
+                       <a class="button" href="#" alt="product name" onclick="openDetails()">Weitere Details</a>
                    </div>
                </div>
                </div>
@@ -183,5 +183,12 @@
         <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
     </ul>
     </main>
+    <script >
+
+        function openDetails(){
+            alert('Open details');
+        }
+
+    </script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title></title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 	<style type="text/css">
 		img {
   height: 215px;
@@ -85,6 +86,10 @@
 }
 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="./scripts/jquery.modalLink-1.0.0.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./css/jquery.modalLink-1.0.0.css" />
 </head>
 <body class="wrapper">
 
@@ -104,15 +109,28 @@
 		<div class="current-price">999.99</div>
 		<div class="before-price">1000.99</div>
 		<div class="product-detail-link">
-			<a class="button" href="#" alt="product name">Weitere Details</a>
+			<a id="modal-link" class="button" href="formPage.php" alt="product name" ">Weitere Details</a>
+			
 		</div>
 	</div>
 	</div>
 
 </div>
-
 </main>
-
+<!-- https://www.jqueryscript.net/lightbox/Simple-iFrame-Modal-Plugin-With-jQuery-modallink.html -->
+<script >
+	$(document).ready(function() {
+    
+	$("#modal-link").modalLink();
+	$(".modal-link-with-data").modalLink({
+                    data: {
+                        foo: "bar"
+                    }
+                });
+    
+})
+</script>
 <footer>This is footer</footer>
+
 </body>
 </html>
