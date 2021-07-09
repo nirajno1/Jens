@@ -4,7 +4,7 @@
 <body class="wrapper">
 
 	<header>   
-        <img class="logo" src="./images/logo-refluxis-neu_logo.png"/>
+        <img class="logo" src="./images/macon/logo-refluxis-neu_logo.png"/>
         <div class="content">Refluxis Matratzen-Konfigurator</div>
     </header>
 <main>
@@ -18,7 +18,6 @@
         } else {
             $pageno = 1;
         }
- 
 
         $sleepType= $_GET['sleepType'];  
         $sweat= $_GET['sweat'];  
@@ -28,39 +27,40 @@
         $where="where sleep_type='".$sleepType."' and sweat='".$sweat."' and weight='".$weight."'";
         $priceC=" and search_price between ".$price;
 
-
         $no_of_records_per_page = 5;
         $offset = ($pageno-1) * $no_of_records_per_page;
+        $dbServerName="192.168.0.121";
+              $username="neeraj";
+               $password="mylove4God#";
+               $dbname="JENS";
+     //   $credential = new Credential();
+      // echo $credential->dbServerName.$credential->username.$credential->password.$credential->dbname;
        
-        $credential = new Credential();
-      
-        $conn=mysqli_connect($credential->dbServerName,$credential->username,
-        $credential->password,$credential->dbname);
+       // $conn=mysqli_connect($credential->dbServerName,$credential->username,$credential->password,$credential->dbname);
+        $conn=mysqli_connect($dbServerName,$username,$password,$dbname);
        
         // Check connection
         if (mysqli_connect_errno()){
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
             die();
         }
-
+ 
         $total_pages_sql = "SELECT COUNT(*) FROM JENS.PRODUCT ".$where.$priceC;
         $result = mysqli_query($conn,$total_pages_sql);
         $total_rows = mysqli_fetch_array($result)[0];
         $total_pages = ceil($total_rows / $no_of_records_per_page);
         $sql = "SELECT * FROM JENS.PRODUCT ". $where .$priceC." LIMIT $offset, $no_of_records_per_page";
 
-       // echo $sql . "<br>";
-        // echo $total_pages_sql;
+        echo $sql . "<br>";
+       // echo $total_pages_sql;
         $res_data = mysqli_query($conn,$sql);
-      //  echo '<div class="searchParams">Showing total result(s) '.$total_rows.' in '.$total_pages.' pages  for '.
+       echo '<div class="searchParams">Showing total result(s) '.$total_rows.' in '.$total_pages.' pages  for '.
         'Sleep Type: ' .$sleepType. 
         ' Sweat more: ' .$sweat.
         ' Weight: ' .$weight.
         ' Price: ' .$price.'     
         </div>';
         while($row = mysqli_fetch_array($res_data)){
-           // while($row = mysqli_fetch_assoc($result)){
-
                $product_id=$row["product_id"]; 
                $product_name=$row["product_name"];
                $description=$row["description"];
