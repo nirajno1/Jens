@@ -119,7 +119,7 @@
         $dbServerName="192.168.0.121";
         $username="neeraj";
         $password="mylove4God#";
-        $dbname="JENS";
+        $dbname="dbs1834815";
         
         $conn=mysqli_connect($dbServerName,$username,$password,$dbname);
        
@@ -129,12 +129,12 @@
             die();
         }
 
-        $total_pages_sql = "SELECT COUNT(*) FROM JENS.PRODUCT ".$where.$priceC;
+        $total_pages_sql = "SELECT COUNT(*) FROM PRODUCT ".$where.$priceC;
         $result = mysqli_query($conn,$total_pages_sql);
         $total_rows = mysqli_fetch_array($result)[0];
         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-        $sql = "SELECT * FROM JENS.PRODUCT ". $where .$priceC." LIMIT $offset, $no_of_records_per_page";
+        $sql = "SELECT * FROM PRODUCT ". $where .$priceC." LIMIT $offset, $no_of_records_per_page";
         echo $sql . "<br>";
         echo $total_pages_sql;
         $res_data = mysqli_query($conn,$sql);
