@@ -1,92 +1,134 @@
-<?php
-echo "Sleep Type:" . $_GET['sleepType'];  
-echo "Sweat: " . $_GET['sweat'];  
-echo "weight: " . $_GET['weight'];  
-echo "price: " . $_GET['price']."<br>";  
-
-// sleepType=medium&sweat=n&weight=h3&price=300600
-if (isset($_GET['pageno'])) {
-    $pageno = $_GET['pageno'];
-} else {
-    $pageno = 1;
-}
-
-$no_of_records_per_page = 10;
-$offset = ($pageno-1) * $no_of_records_per_page; 
-
-echo '<pre>'.print_r($_SERVER["QUERY_STRING"], TRUE).'</pre>';
-
-
-$dbServerName="192.168.0.121";
-$username="neeraj";
-$password="mylove4God#";
-$dbname="JENS";
-
-$conn=mysqli_connect($dbServerName,$username,$password,$dbname);
-
-
-
-
-
-$total_pages_sql = "SELECT COUNT(*) FROM PRODUCT";
-$result = mysqli_query($conn,$total_pages_sql);
-$total_rows = mysqli_fetch_array($result)[0];
-$total_pages = ceil($total_rows / $no_of_records_per_page);
-
-
-$sql = "SELECT * FROM PRODUCT LIMIT $offset, $no_of_records_per_page"; 
-
-
-
-if($resultCount>0){
-    
-    while($row = mysqli_fetch_assoc($result)){
-
-        $product_id=$row["product_id"]; 
-        $aw_deep_link=$row["aw_deep_link"];
-        $product_name=$row["product_name"];
-        $aw_product_id=$row["aw_product_id"]; 
-        $merchant_product_id=$row["merchant_product_id"];
-        $merchant_image_url=$row["merchant_image_url"];
-        $description=$row["description"];
-        $merchant_category=$row["merchant_category"]; 
-        $search_price=$row["search_price"]; 
-        $merchant_name=$row["merchant_name"];
-        $aw_image_url=$row["aw_image_url"]; 
-        $merchant_deep_link=$row["merchant_deep_link"]; 
-        $display_price=$row["display_price"]; 
-        $brand_name=$row["brand_name"]; 
-        $colour=$row["colour"];
-        $dimensions=$row["dimensions"];
-        $product_price_old=$row["product_price_old"];
-        $alternate_image=$row["alternate_image"];
-        $aw_thumb_url=$row["aw_thumb_url"];
-        $alternate_image_two=$row["alternate_image_two"]; 
-        $alternate_image_three=$row["alternate_image_three"];
-
-
-}
-    
-}
-
-?>
+<!DOCTYPE html>
 <html>
-<head></head>
-<body>
+<?php include 'header.php'; ?>
+<body class="wrapper">
 
-<ul class="pagination">
-    <li><a href="?pageno=1">First</a></li>
-    <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-        <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-    </li>
-    <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-        <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-    </li>
-    <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-</ul>
+	<header>   
+        <img class="logo" src="./images/logo-refluxis-neu_logo.png"/>
+        <div class="content">Refluxis Matratzen-Konfigurator</div>
+    </header>
+<main>
+
+    <?php
+  
+      require_once './includes/Credential.php';
+
+        if (isset($_GET['pageno'])) {
+            $pageno = $_GET['pageno'];
+        } else {
+            $pageno = 1;
+        }
+ 
+
+        $sleepType= $_GET['sleepType'];  
+        $sweat= $_GET['sweat'];  
+        $weight= $_GET['weight'];  
+        $price=$_GET['price'];  
+        $queryUrl='result1.php?sleepType='.$sleepType.'&sweat='.$sweat.'&weight='.$weight.'&price='.$price;
+        $where="where sleep_type='".$sleepType."' and sweat='".$sweat."' and weight='".$weight."'";
+        $priceC=" and search_price between ".$price;
 
 
+        $no_of_records_per_page = 5;
+        $offset = ($pageno-1) * $no_of_records_per_page;
+       
+        $credential = new Credential();
+      
+        $conn=mysqli_connect($credential->dbServerName,$credential->username,
+        $credential->password,$credential->dbname);
+       
+        // Check connection
+        if (mysqli_connect_errno()){
+            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+            die();
+        }
 
+        $total_pages_sql = "SELECT COUNT(*) FROM JENS.PRODUCT ".$where.$priceC;
+        $result = mysqli_query($conn,$total_pages_sql);
+        $total_rows = mysqli_fetch_array($result)[0];
+        $total_pages = ceil($total_rows / $no_of_records_per_page);
+        $sql = "SELECT * FROM JENS.PRODUCT ". $where .$priceC." LIMIT $offset, $no_of_records_per_page";
+
+       // echo $sql . "<br>";
+        // echo $total_pages_sql;
+        $res_data = mysqli_query($conn,$sql);
+      //  echo '<div class="searchParams">Showing total result(s) '.$total_rows.' in '.$total_pages.' pages  for '.
+        'Sleep Type: ' .$sleepType. 
+        ' Sweat more: ' .$sweat.
+        ' Weight: ' .$weight.
+        ' Price: ' .$price.'     
+        </div>';
+        while($row = mysqli_fetch_array($res_data)){
+           // while($row = mysqli_fetch_assoc($result)){
+
+               $product_id=$row["product_id"]; 
+               $product_name=$row["product_name"];
+               $description=$row["description"];
+               $search_price=$row["search_price"]; 
+               $aw_thumb_url=$row["aw_thumb_url"];
+               $aw_image_url=$row["aw_image_url"]; 
+               $product_price_old=$row["product_price_old"];
+
+               echo '<div class="product-box" >
+               <div class="left-box">
+               <img src='.$aw_image_url.' alt="product image" style="display: block;">
+               </div>
+               <div class="right-box">
+                   <div class="product-name">('.$product_id.')'.$product_name.'</div>
+               <div class="right-top-box">'.$description.'</div>
+               <div class="right-bottom-box">
+                   <div class="current-price-txt">Preis</div>
+                   <div class="before-price-txt">Alter Preis</div>
+                   <div class="product-detail-link"></div>
+                   <div class="current-price">'.$search_price.'</div>
+                   <div class="before-price">'.$product_price_old.'</div>
+                   <div class="product-detail-link">
+                       <a class="button" href="#" alt="product name" onclick="openDetails()">Weitere Details</a>
+                   </div>
+               </div>
+               </div>
+            </div>
+            ';
+        }
+        mysqli_close($conn);
+    ?>
+         <div class="pagination">    
+      <?php  
+     
+          
+    echo "</br>";     
+        // Number of pages required.   
+   
+        $pagLink = "";       
+      
+        if($pageno>=2){   
+            echo "<a href=".$queryUrl.'&pageno='.($pageno-1)."'>  Prev </a>";   
+        }       
+                   
+        for ($i=1; $i<=$total_pages; $i++) {   
+          if ($i == $pageno) {   
+              $pagLink .= "<a class = 'active' href='".$queryUrl.'&pageno='.$i."'>".$i." </a>";   
+          }               
+          else  {   
+              $pagLink .= "<a href='".$queryUrl.'&pageno='.$i."'>   
+                                                ".$i." </a>";     
+          }   
+        };     
+        echo $pagLink;   
+  
+        if($pageno<$total_pages){   
+            echo "<a href='".$queryUrl.'&pageno='.($pageno+1)."'>  Next </a>";   
+        }   
+  
+      ?>    
+      </div>  
+    </main>
+    <script >
+
+        function openDetails(){
+            alert('Open details');
+        }
+
+    </script>
 </body>
-
 </html>
