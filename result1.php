@@ -22,12 +22,7 @@
   min-width: 300px;
 }
 
-.before-price::after {
-	content: ',- \20AC';
-}
-.current-price::after {
-	content: ',- \20AC';
-}
+
 .product-box {
 	display: grid;
  	grid-template-columns: 300px auto;
@@ -99,7 +94,7 @@ header {
 }
 .logo {
   height: 45px;
-  display: block;
+   display: block;
 }
 .content {
   padding: 10px;
@@ -107,6 +102,21 @@ header {
   font-size: 21px;
   text-align: left;
   color: #2eae06;
+}
+.current-price {
+	color: #2eae06;
+	font-weight: bold;
+}
+.before-price {
+	color: black;
+	font-weight: bold;
+	text-decoration-line: line-through;
+}
+.before-price::after {
+	content: ',- \20AC';
+}
+.current-price::after {
+	content: ',- \20AC';
 }
 </style>
 
@@ -164,6 +174,12 @@ header {
         //  echo $sql . "<br>";
         // echo $total_pages_sql;
         $res_data = mysqli_query($conn,$sql);
+        echo '<div class="searchParams">Showing total result(s) '.$total_rows.' in '.$total_pages.' pages  for '.
+        'Sleep Type: ' .$sleepType. 
+        ' Sweat more: ' .$sweat.
+        ' Weight: ' .$weight.
+        ' Price: ' .$price.'     
+        </div>';
         while($row = mysqli_fetch_array($res_data)){
            // while($row = mysqli_fetch_assoc($result)){
 
