@@ -86,16 +86,42 @@
 .product-detail-link a:hover {
 	text-decoration: none;
 }
-
+/* header style */
+header {
+  background-color: #ffffff;
+  font-family: Arial;
+  padding: 16px;
+  min-width: 300px;
+  display: grid;
+  grid-gap: 2px;
+  grid-template-columns: 45% auto;
+  grid-template-rows: 65px;
+}
+.logo {
+  height: 45px;
+  display: block;
+}
+.content {
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 21px;
+  text-align: left;
+  color: #2eae06;
+}
 </style>
 
     <title>Refluxis Matratzen-Konfigurator</title>
-    <!-- Bootstrap CDN -->
+    <!-- Bootstrap CDN 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- 
+ -->
 </head>
-<body >
-    <main class="wrapper">
+<body class="wrapper">
+
+	<header>   
+        <img class="logo" src="./images/logo-refluxis-neu_logo.png"/>
+        <div class="content">Refluxis Matratzen-Konfigurator</div>
+    </header>
+<main>
     <?php
 
         if (isset($_GET['pageno'])) {
@@ -135,8 +161,8 @@
         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
         $sql = "SELECT * FROM JENS.PRODUCT ". $where .$priceC." LIMIT $offset, $no_of_records_per_page";
-        echo $sql . "<br>";
-        echo $total_pages_sql;
+        //  echo $sql . "<br>";
+        // echo $total_pages_sql;
         $res_data = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_array($res_data)){
            // while($row = mysqli_fetch_assoc($result)){
