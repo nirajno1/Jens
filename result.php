@@ -24,7 +24,7 @@
         $sweat= $_GET['sweat'];  
         $weight= $_GET['weight'];  
         $price=$_GET['price'];  
-        $queryUrl='result1.php?sleepType='.$sleepType.'&sweat='.$sweat.'&weight='.$weight.'&price='.$price;
+        $queryUrl='result.php?sleepType='.$sleepType.'&sweat='.$sweat.'&weight='.$weight.'&price='.$price;
         $where="where sleep_type='".$sleepType."' and sweat='".$sweat."' and weight='".$weight."'";
         $priceC=" and search_price between ".$price;
 
