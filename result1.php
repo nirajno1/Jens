@@ -1,130 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-	
-	<style type="text/css">
-		img {
-  height: 215px;
-}
-.wrapper {
-	font-family: Arial;
-  max-width: 1000px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 100px auto 100px;
-  grid-gap: 1px;
-  align-items: center;
-
-  /*background-color: #d95959;*/
-  /*background-color: #fff;*/
-  color: #444;
-  min-width: 300px;
-}
-
-
-.product-box {
-	display: grid;
- 	grid-template-columns: 300px auto;
-	margin: 5px;
-	padding: 18px;
-	border: 4px solid #e7e7e7;
-}
-
-.right-bottom-box {
-	display: grid;
-	grid-template-columns: 100px 100px auto;
-	grid-template-rows: 30px 30px;
-}
-
-.right-box {
-	display: grid;
-	grid-template-columns: 600px;
-	grid-template-rows: 20px auto 50px;
-	grid-gap: 0;
-	align-items: center;
-	margin: 2px;
-	padding: 5px;
-}
-.right-top-box{
-	text-align: justify;
-}
-.button {
-  font: bold 20px Arial;
-  text-decoration: none;
-  background-color: #2eae06;
-  border-radius: 15px;
-  color: #ffffff;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
-}
-
-.button:hover {
-  background-color: #6AE86A;
-}
-
-.product-name {
-	font-size: 21px;
-	font-weight: bold;
-	font-family: Arial;
-	color: #337ab7;
-}
-.before-price {
-	text-decoration-line: line-through;
-}
-.product-detail-link {
-	text-align: right;
-}
-.product-detail-link a:hover {
-	text-decoration: none;
-}
-/* header style */
-header {
-  background-color: #ffffff;
-  font-family: Arial;
-  padding: 16px;
-  min-width: 300px;
-  display: grid;
-  grid-gap: 2px;
-  grid-template-columns: 45% auto;
-  grid-template-rows: 65px;
-}
-.logo {
-  height: 45px;
-   display: block;
-}
-.content {
-  padding: 10px;
-  font-weight: bolder;
-  font-size: 21px;
-  text-align: left;
-  color: #2eae06;
-}
-.current-price {
-	color: #2eae06;
-	font-weight: bold;
-}
-.before-price {
-	color: black;
-	font-weight: bold;
-	text-decoration-line: line-through;
-}
-.before-price::after {
-	content: ',- \20AC';
-}
-.current-price::after {
-	content: ',- \20AC';
-}
-</style>
-
-    <title>Refluxis Matratzen-Konfigurator</title>
-    <!-- Bootstrap CDN 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- -->
-</head>
+<?php include 'header.php'; ?>
 <body class="wrapper">
 
 	<header>   
@@ -132,32 +8,34 @@ header {
         <div class="content">Refluxis Matratzen-Konfigurator</div>
     </header>
 <main>
+
     <?php
+  
+      require_once 'Credential.php';
 
         if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
             $pageno = 1;
         }
+ 
 
         $sleepType= $_GET['sleepType'];  
         $sweat= $_GET['sweat'];  
         $weight= $_GET['weight'];  
         $price=$_GET['price'];  
-
+        $queryUrl='result1.php?sleepType='.$sleepType.'&sweat='.$sweat.'&weight='.$weight.'&price='.$price;
         $where="where sleep_type='".$sleepType."' and sweat='".$sweat."' and weight='".$weight."'";
         $priceC=" and search_price between ".$price;
 
 
-
         $no_of_records_per_page = 5;
         $offset = ($pageno-1) * $no_of_records_per_page;
-        $dbServerName="192.168.0.121";
-        $username="neeraj";
-        $password="mylove4God#";
-        $dbname="JENS";
-        
-        $conn=mysqli_connect($dbServerName,$username,$password,$dbname);
+       
+        $credential = new Credential();
+      
+        $conn=mysqli_connect($credential->dbServerName,$credential->username,
+        $credential->password,$credential->dbname);
        
         // Check connection
         if (mysqli_connect_errno()){
@@ -169,12 +47,12 @@ header {
         $result = mysqli_query($conn,$total_pages_sql);
         $total_rows = mysqli_fetch_array($result)[0];
         $total_pages = ceil($total_rows / $no_of_records_per_page);
-
         $sql = "SELECT * FROM JENS.PRODUCT ". $where .$priceC." LIMIT $offset, $no_of_records_per_page";
-        //  echo $sql . "<br>";
+
+       // echo $sql . "<br>";
         // echo $total_pages_sql;
         $res_data = mysqli_query($conn,$sql);
-        echo '<div class="searchParams">Showing total result(s) '.$total_rows.' in '.$total_pages.' pages  for '.
+      //  echo '<div class="searchParams">Showing total result(s) '.$total_rows.' in '.$total_pages.' pages  for '.
         'Sleep Type: ' .$sleepType. 
         ' Sweat more: ' .$sweat.
         ' Weight: ' .$weight.
@@ -214,16 +92,36 @@ header {
         }
         mysqli_close($conn);
     ?>
-    <ul class="pagination">
-        <li><a href="?pageno=1">First</a></li>
-        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-        </li>
-        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-        </li>
-        <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-    </ul>
+         <div class="pagination">    
+      <?php  
+     
+          
+    echo "</br>";     
+        // Number of pages required.   
+   
+        $pagLink = "";       
+      
+        if($pageno>=2){   
+            echo "<a href=".$queryUrl.'&pageno='.($pageno-1)."'>  Prev </a>";   
+        }       
+                   
+        for ($i=1; $i<=$total_pages; $i++) {   
+          if ($i == $pageno) {   
+              $pagLink .= "<a class = 'active' href='".$queryUrl.'&pageno='.$i."'>".$i." </a>";   
+          }               
+          else  {   
+              $pagLink .= "<a href='".$queryUrl.'&pageno='.$i."'>   
+                                                ".$i." </a>";     
+          }   
+        };     
+        echo $pagLink;   
+  
+        if($pageno<$total_pages){   
+            echo "<a href='".$queryUrl.'&pageno='.($pageno+1)."'>  Next </a>";   
+        }   
+  
+      ?>    
+      </div>  
     </main>
     <script >
 
