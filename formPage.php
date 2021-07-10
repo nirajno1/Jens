@@ -11,7 +11,7 @@
 
 
     
-    <img class="logo" src="./images/logo-refluxis-neu_logo.png"/>
+    <img class="logo" src="./images/macon/logo-refluxis-neu_logo.png"/>
 
 
 <div class="content">Refluxis Matratzen-Konfigurator</div>
