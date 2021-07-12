@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="./images/macon/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <title>Refluxis Matratzen-Konfigurator</title>
 <style>
 <?php include './css/formPage.css'; ?>
 </style>
+
 <body>
+<a id="anchor" href="#"></a> 
   <div class="wrapper">
 <header>
 
@@ -186,6 +189,9 @@ function showTab(n) {
 }
 
 function nextPrev(n) {
+  var anchor=document.getElementById("anchor").focus();
+ 
+
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
