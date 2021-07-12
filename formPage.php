@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 <title>Refluxis Matratzen-Konfigurator</title>
 <style>
 
@@ -84,10 +85,11 @@ font-size: larger;
 font-weight: bold;
 color: #c40000;
 }
-.logo {
-  height: 45px;
-}
 
+.logo {
+	display: block;
+	height: 75px;
+}
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
   background-color: #ffdddd;
@@ -147,11 +149,12 @@ header {
   background-color: #ffffff;
   font-family: Arial;
   padding: 16px;
-  min-width: 300px;
+  min-width: 200px;
   display: grid;
-  grid-gap: 2px;
-  grid-template-columns: 45% auto;
-  grid-template-rows: 65px;
+ 
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  align-items: end;
 }
 #regForm {
   background-color: #ffffff;
@@ -159,12 +162,12 @@ header {
   font-family: Arial;
   padding: 10px;
   /*width: 70%;*/
-  min-width: 300px;
+  min-width: 200px;
 }
 .content {
   padding: 10px;
   font-weight: bolder;
-  font-size: 21px;
+  font-size: 30px;
   text-align: left;
   color: #2eae06;
 }
@@ -172,14 +175,14 @@ footer{
   font-family: Arial;
   padding: 16px;
   /*width: 70%;*/
-  min-width: 300px;
+  min-width: 200px;
   background-color: #ffffff;
 }
 body {
   margin: 40px;
 }
 .wrapper {
-  max-width: 600px;
+  max-width: 1000px;
   margin: auto;
   display: grid;
   grid-template-columns: auto;
@@ -190,7 +193,7 @@ body {
   /*background-color: #d95959;*/
   /*background-color: #fff;*/
   color: #444;
-  min-width: 300px;
+  min-width: 200px;
 }
 
 .wrapper > div img {
@@ -201,8 +204,36 @@ body {
   margin: 0px;
 }
 
+
+@media only screen and (max-width: 600px) {
+
+  header {
+	background-color: #ffffff;
+	font-family: Arial;
+	padding: 16px;
+	min-width: 200px;
+	display: grid;
+
+	grid-template-columns: auto;
+	grid-template-rows: auto;
+}
+.content {
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 15px;
+  text-align: left;
+  color: #2eae06;
+}
+.logo {
+  display: block;
+  height: 45px;
+}
+}
+
 </style>
+
 <body>
+<a id="anchor" href="#"></a> 
   <div class="wrapper">
 <header>
 
@@ -383,6 +414,9 @@ function showTab(n) {
 }
 
 function nextPrev(n) {
+  var anchor=document.getElementById("anchor").focus();
+ 
+
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
