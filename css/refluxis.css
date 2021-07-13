@@ -15,13 +15,12 @@ img {
   /*background-color: #d95959;*/
   /*background-color: #fff;*/
   color: #444;
-  min-width: 300px;
+  min-width: 200px;
 }
-
 
 .product-box {
 	display: grid;
- 	grid-template-columns: 300px auto;
+ 	grid-template-columns: 200px auto;
 	margin: 5px;
 	padding: 18px;
 	border: 1px solid #e7e7e7;
@@ -31,21 +30,25 @@ img {
 	display: grid;
 	grid-template-columns: auto auto;
 	grid-template-rows: 30px 30px;
-	align-content: center;
+	
 	align-items: center;
+    text-align: center;
 }
 
 .right-box {
-	display: grid;
-	grid-template-columns: 600px;
-	grid-template-rows: 20px auto 50px;
-	grid-gap: 0;
-	align-items: center;
-	margin: 2px;
-	padding: 5px;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 20px auto 50px;
+    grid-gap: 0px;
+    align-items: center;
+    
+    padding: 5px;
+    margin-left: 25px;
+    
 }
 .right-top-box{
 	text-align: justify;
+    padding: 5px;
 }
 .button {
   font: bold 20px Arial;
@@ -69,6 +72,7 @@ img {
 	font-weight: bold;
 	font-family: Arial;
 	color: #337ab7;
+    padding-bottom: 20px;
 }
 .current-price-txt {
 	font-size: medium;
@@ -86,30 +90,34 @@ img {
 	text-decoration-line: line-through;
 }
 .product-detail-link {
-	text-align: right;
+    text-align: right;
+    padding: 1px;
+    margin-top: 10px;
 }
+
 .product-detail-link a:hover {
 	text-decoration: none;
 }
 /* header style */
-header {
+    header {
   background-color: #ffffff;
   font-family: Arial;
   padding: 16px;
-  min-width: 300px;
+  min-width: 200px;
   display: grid;
   grid-gap: 2px;
-  grid-template-columns: 45% auto;
-  grid-template-rows: 65px;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  align-items: end;
 }
 .logo {
-  height: 45px;
-   display: block;
+  display: block;
+  height: 75px;
 }
 .content {
   padding: 10px;
   font-weight: bolder;
-  font-size: 21px;
+  font-size: 30px;
   text-align: left;
   color: #2eae06;
 }
@@ -185,8 +193,9 @@ header {
 	color: #337ab7;
 }
 .search {
-	display: grid;
-	grid-template-columns: auto auto;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
 }
 .searchParams {
 	color: #70b7f4;
@@ -258,4 +267,53 @@ header {
 .pagination a:hover:not(.active) {   
   background-color: skyblue;   
 }   
+
+@media only screen and (max-width: 600px) {
+
+  header {
+    background-color: #ffffff;
+    font-family: Arial;
+    padding: 16px;
+    min-width: 200px;
+    display: grid;
+
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+.search {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+}
+.product-box {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 5px;
+    padding: 18px;
+    border: 1px solid #e7e7e7;
+}
+.right-box {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-gap: 0;
+    align-items: center;
+    margin: 2px;
+    padding: 5px;
+}
+
+.content {
+  padding: 10px;
+  font-weight: bolder;
+  font-size: 15px;
+  text-align: left;
+  color: #2eae06;
+}
+.logo {
+  display: block;
+  height: 45px;
+}
+}
+
 
