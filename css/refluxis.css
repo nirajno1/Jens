@@ -18,6 +18,7 @@ img {
   min-width: 200px;
 }
 
+
 .product-box {
 	display: grid;
  	grid-template-columns: 200px auto;
@@ -30,9 +31,8 @@ img {
 	display: grid;
 	grid-template-columns: auto auto;
 	grid-template-rows: 30px 30px;
-	
+	align-content: center;
 	align-items: center;
-    text-align: center;
 }
 
 .right-box {
@@ -99,26 +99,26 @@ img {
 	text-decoration: none;
 }
 /* header style */
-    header {
-  background-color: #ffffff;
-  font-family: Arial;
-  padding: 16px;
-  min-width: 200px;
-  display: grid;
-  grid-gap: 2px;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto;
-  align-items: end;
-}
+header {
+	background-color: #ffffff;
+	font-family: Arial;
+	padding: 16px;
+	min-width: 200px;
+	display: grid;
+	grid-gap: 2px;
+	grid-template-columns: auto;
+	grid-template-rows: auto auto;
+	align-items: center;
+	justify-items: center;
+  }
 .logo {
   display: block;
   height: 75px;
 }
 .content {
   padding: 10px;
-  font-weight: bolder;
-  font-size: 30px;
-  text-align: left;
+
+  text-align: center;
   color: #2eae06;
 }
 .current-price {
@@ -198,9 +198,10 @@ img {
     align-items: center;
 }
 .searchParams {
-	color: #70b7f4;
+	color: #337ab7;
 	font-weight: bold;
 	font-family: Arial;
+	font-size: small;
 }
 /* model */
 /* The Modal (background) */

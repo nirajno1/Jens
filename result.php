@@ -46,7 +46,9 @@
         $result = mysqli_query($conn,$total_pages_sql);
         $total_rows = mysqli_fetch_array($result)[0];
         $total_pages = ceil($total_rows / $no_of_records_per_page);
-        $sql = "SELECT * FROM PRODUCT ". $where .$priceC." LIMIT $offset, $no_of_records_per_page";
+        $sql = "SELECT product_id,product_name,description,search_price,
+        aw_image_url,product_price_old,aw_deep_link  FROM PRODUCT "
+        . $where .$priceC." LIMIT $offset, $no_of_records_per_page";
 
         // echo $sql . "<br>";
        // echo $total_pages_sql;
@@ -69,9 +71,9 @@ if($sweat=='y'){
 
 $weightVal=null;
 if($weight=='H2'){
-    $weightVal="bis ca. 80 kg [Normalgewicht lt. BMI-Wert] (H4)";
+    $weightVal="bis ca. 80 kg [Normalgewicht lt. BMI-Wert] (H2)";
 }elseif($weight=='H3'){
-    $weightVal="bis ca. 100 kg [Normalgewicht lt. BMI-Wert] (H4)";
+    $weightVal="bis ca. 100 kg [Normalgewicht lt. BMI-Wert] (H3)";
 }elseif($weight=='H4'){
     $weightVal="bis ca. 120 kg [Normalgewicht lt. BMI-Wert] (H4)";
 }elseif($weight=='H5'){
@@ -108,7 +110,7 @@ if($price=='0 and 300'){
                $product_name=$row["product_name"];
                $description=$row["description"];
                $search_price=$row["search_price"]; 
-               $aw_thumb_url=$row["aw_thumb_url"];
+              
                $aw_image_url=$row["aw_image_url"]; 
                $product_price_old=$row["product_price_old"];
                $aw_deep_link=$row["aw_deep_link"];
@@ -118,8 +120,8 @@ if($price=='0 and 300'){
                <img src="'.$aw_image_url.'" alt="product image" style="display: block;">
                </div>
                <div class="right-box"> <!-- grid of 1 column  3 rows -->
-                   <div class="product-name">('.$product_id.')'.$product_name.'</div>
-               
+                   <div class="product-name">'.$product_name.'</div>
+               <!-- product id: '.$product_id.'-->
                    <div class="right-top-box">'.$description.'</div>
                
                     <div class="right-bottom-box">
