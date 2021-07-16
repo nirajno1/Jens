@@ -1,0 +1,26 @@
+The text on the first page is smaller than the following
+
+I still have to redo the logo. I give the logo the name "macon_logo.jpg". Name always the same so that I can swap it quickly.
+
+Logo <center> underneath
+Matratzen-Konfigurator <H1> <center>
+
+Between the green dots and the question, a blank line
+
+The buttons below <center>
+Please rename:
+Previous = zurück
+Next = weiter
+Submit = senden
+
+A blank line between text (advice) and buttons
+
+No preselection of the answers. All mandatory fields
+
+
+SELECT product_id,product_name,description,search_price,aw_image_url,product_price_old,aw_deep_link FROM PRODUCT where sleep_type='s' and weight='H2' and sweat='n' and search_price between 0 and 300 LIMIT 0, 5
+
+SELECT product_id,product_name,description,search_price,aw_image_url,product_price_old,aw_deep_link FROM PRODUCT where sleep_type='s' and sweat='y' and weight='H2' and search_price between 0 and 300 LIMIT 0, 5
+
+/* working link */
+http://matratzenshop.refluxis.de/result.php?sleepType=s&sweat=n&weight=H2&price=0+and+300

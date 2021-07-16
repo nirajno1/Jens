@@ -8,17 +8,10 @@
 </style>
 
 <body>
-<a id="anchor" href="#"></a> 
+<a id="anchor" href="#"></a>
   <div class="wrapper">
-<header>
+<?php include './includes/bodyHeader.php'; ?>
 
-
-    
-    <img class="logo" src="./images/macon/logo-refluxis-neu_logo.png"/>
-
-
-<div class="content">Refluxis Matratzen-Konfigurator</div>
-</header>
 <main>
 <form id="regForm" action="result.php">
 
@@ -29,7 +22,7 @@
     <span class="step"></span>
     <span class="step"></span> 
     <span class="step" style="display: none;"></span>
-
+<hr style="width:90%">
   </div>
   <!-- One "tab" for each step in the form: -->
   <div class="tab">
@@ -153,10 +146,11 @@ ab 120 kg Körpergewicht nimmst Du Härte 5 (H5)</p>
       <p>Entscheide selber, was Dir gesunder Schlaf wert ist!</p>
   </div>
  </div>
+ <hr style="width:90%">
   <div style="overflow:auto;">
-    <div style="float:right;">
-      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    <div style="text-align:center;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">zurück</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">weiter</button>
     </div>
   </div>
 
@@ -180,18 +174,16 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
+    document.getElementById("nextBtn").innerHTML = "senden";
   } else {
-    document.getElementById("nextBtn").innerHTML = "Next";
+    document.getElementById("nextBtn").innerHTML = "weiter";
   }
   //... and run a function that will display the correct step indicator:
   fixStepIndicator(n)
 }
 
 function nextPrev(n) {
-  var anchor=document.getElementById("anchor").focus();
- 
-
+  document.getElementById("anchor").focus();
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
