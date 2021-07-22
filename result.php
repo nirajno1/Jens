@@ -2,11 +2,7 @@
 <html>
 <?php include './includes/header.php'; ?>
 <body class="wrapper">
-
-	<header>   
-        <img class="logo" src="./images/macon/logo-refluxis-neu_logo.png"/>
-        <div class="content">Refluxis Matratzen-Konfigurator</div>
-    </header>
+    <?php include './includes/bodyHeader.php'; ?>
 <main>
 
     <?php
@@ -55,18 +51,18 @@
         $res_data = mysqli_query($conn,$sql);
 $sleepVal=null;
 if($sleepType=='s'){
-    $sleep="weiches Liegegefühl";
+    $sleepVal="weiches";
 }elseif($sleepType=='m'){
-    $sleep="mittleres Liegegefühl";
+    $sleepVal="mittleres";
 }elseif($sleepType=='f'){
-    $sleep="festes Liegegefühl";
+    $sleepVal="festes";
 }
 
 $sweatVal=null;
 if($sweat=='y'){
-    $sweatQ="Ja";
+    $sweatVal="Ja";
 }elseif($sweat=='n'){
-    $sweatQ="Nein";
+    $sweatVal="Nein";
 }
 
 $weightVal=null;
@@ -95,11 +91,11 @@ if($price=='0 and 300'){
 
        echo '
        <div class="search">
-       <div class="searchParams">Showing total result(s) '.$total_rows.' in '.$total_pages.' pages.'.
-        '<br>Sleep Type: ' .$sleepVal. 
-        ' Sweat more: ' .$sweatVal.
-        ' Weight: ' .$weightVal.
-        ' Price: ' .$priceVal.'     
+       <div class="searchParams">Gesamtergebnis '.$total_rows.' Produkte'.
+        '<br>Schlaftyp: ' .$sleepVal. 
+        '; Schwitzen: ' .$sweatVal.
+        '; Gewicht: ' .$weightVal.
+        '; Preis: ' .$priceVal.'     
         </div>
         <div class="searchAgain">
         <a class="button" href="formPage.php" >Suche ändern</a>
@@ -132,12 +128,14 @@ if($price=='0 and 300'){
                    
                    <div class="current-price">'.$search_price.'</div>
                    <div class="before-price">'.$product_price_old.'</div>
+                   <div class="tax-shipping">inkl. 19 % MwSt zzgl. <a class="gm_shipping_link lightbox_iframe" href="https://www.refluxis.de/popup/versandkosten.html" target="_self" rel="nofollow" data-modal-settings="{&quot;title&quot;:&quot;Versand&quot;, &quot;sectionSelector&quot;: &quot;.content_text&quot;, &quot;bootstrapClass&quot;: &quot;modal-lg&quot;}">
+					<span style="text-decoration:underline">Versand</span>
+		        </a></div>
                    </div>
                    <div class="product-detail-link">
                        <a class="button" href="#" alt="product name" onclick="openDetails('.$product_id.')">Weitere Details</a>
                    </div>
-               
-               </div>
+                </div>
             </div>
             <!-- The Modal -->
             <div id="myModal_'.$product_id.'" class="modal">
@@ -157,6 +155,9 @@ if($price=='0 and 300'){
                                 <div class="before-price-txt">Alter Preis</div>
                                 <div class="current-price">'.$search_price.'</div>
                                 <div class="before-price">'.$product_price_old.'</div>
+                                <div class="tax-shipping">inkl. 19 % MwSt zzgl. <a class="gm_shipping_link lightbox_iframe" href="https://www.refluxis.de/popup/versandkosten.html" target="_self" rel="nofollow" data-modal-settings="{&quot;title&quot;:&quot;Versand&quot;, &quot;sectionSelector&quot;: &quot;.content_text&quot;, &quot;bootstrapClass&quot;: &quot;modal-lg&quot;}">
+                                    <span style="text-decoration:underline">Versand</span>
+                                </a></div>
                             </div>
                             <div class="pd-product-detail-link">
                                 <a class="pd-button" target="_blank" href="'.$aw_deep_link.'" alt="product name">Zum Shop</a>
