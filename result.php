@@ -145,7 +145,7 @@ if($price=='0 and 300'){
                 <div class="bottom-pdetails">
                 <div class="bottom-brand" style="text-align:left">
                     <div class="partner_shop"> Partner-Shop</div>
-                    <div class="brand_name">'.$merchant_name.'</div>
+                    <div class="brand_name">'.$brand_name.'</div>
                 </div>
                <div class="product-detail-link">
                        <a class="button" href="#" alt="product name" onclick="openDetails('.$product_id.')">Weitere Details</a>
