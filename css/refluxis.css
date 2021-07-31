@@ -29,10 +29,11 @@ img {
 
 .right-bottom-box {
 	display: grid;
-	grid-template-columns: auto auto;
+	grid-template-columns: 195px auto;
 	grid-template-rows: 30px 30px;
 	align-content: center;
 	align-items: center;
+	margin-top: 30px;
 }
 
 .right-box {
@@ -73,6 +74,13 @@ img {
 	font-family: Arial;
 	color: #337ab7;
     padding-bottom: 20px;
+}
+.partner_shop{
+	font-size: small;
+	font-weight: bold;
+  font-family: Arial;
+	color: #337ab7;
+	padding: 5px;
 }
 .current-price-txt {
 	font-size: medium;
@@ -144,22 +152,38 @@ header {
 }
 .pd-right-bottom-box {
 	display: grid;
-	grid-template-columns: auto auto;
-	grid-template-rows: 30px 30px;
+	grid-template-columns: 195px auto;
+	grid-template-rows: 30px 30px 30px;
 	align-items: center;
 	align-content: center;
 	text-align: center;
+	margin-top: 30px;
 }
 
 .pd-right-box {
 	display: grid;
 	grid-template-columns: auto;
-	grid-template-rows: 20px auto 50px auto;
-	grid-gap: 30px;
+	grid-template-rows: auto auto auto 50px auto;
+	grid-gap: 5px;
 	align-items: center;
 	margin: 2px;
 	padding: 5px;
 }
+.item_list{
+	list-style-type: none;
+}
+.item{
+	font-weight: bold;
+	font-style: italic;
+	font-family: Arial;
+	color: #337ab7;
+
+}
+.item-value{
+	font-family: Arial;
+	color: #337ab7;
+}
+
 .pd-right-top-box{
 	text-align: justify;
 	font-size: 15px;
@@ -273,6 +297,22 @@ header {
 .pagination a:hover:not(.active) {   
   background-color: skyblue;   
 }   
+
+.bottom-pdetails{
+	display: grid;
+	grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    align-items: center;
+
+	margin-top: 50px;
+}
+
+.bottom-brand{
+	display: grid;
+	grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+}
 
 @media only screen and (max-width: 600px) {
 

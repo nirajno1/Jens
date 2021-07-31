@@ -43,7 +43,8 @@
         $total_rows = mysqli_fetch_array($result)[0];
         $total_pages = ceil($total_rows / $no_of_records_per_page);
         $sql = "SELECT product_id,product_name,description,search_price,
-        aw_image_url,product_price_old,aw_deep_link  FROM PRODUCT "
+        aw_image_url,product_price_old,aw_deep_link,merchant_name, brand_name,
+         dimensions, colour, weight  FROM PRODUCT "
         . $where .$priceC." LIMIT $offset, $no_of_records_per_page";
 
         // echo $sql . "<br>";
@@ -110,6 +111,14 @@ if($price=='0 and 300'){
                $aw_image_url=$row["aw_image_url"]; 
                $product_price_old=$row["product_price_old"];
                $aw_deep_link=$row["aw_deep_link"];
+               $merchant_name=$row["merchant_name"];
+               
+               $brand_name=$row["brand_name"];
+               $dimensions=$row["dimensions"];
+               $matress_cover=$row["colour"];
+               $weight=$row["weight"];
+
+
 
                echo '<div class="product-box" > <!-- grid of 2 column -->
                <div class="left-box">
@@ -120,7 +129,7 @@ if($price=='0 and 300'){
                <!-- product id: '.$product_id.'-->
                    <div class="right-top-box">'.$description.'</div>
                
-                    <div class="right-bottom-box">
+               <div class="right-bottom-box">
                    
                     <div class="current-price-txt">Preis</div>
                    
@@ -130,13 +139,21 @@ if($price=='0 and 300'){
                    <div class="before-price">'.$product_price_old.'</div>
                    <div class="tax-shipping">inkl. 19 % MwSt zzgl. <a class="gm_shipping_link lightbox_iframe" href="https://www.refluxis.de/popup/versandkosten.html" target="_self" rel="nofollow" data-modal-settings="{&quot;title&quot;:&quot;Versand&quot;, &quot;sectionSelector&quot;: &quot;.content_text&quot;, &quot;bootstrapClass&quot;: &quot;modal-lg&quot;}">
 					<span style="text-decoration:underline">Versand</span>
-		        </a></div>
-                   </div>
-                   <div class="product-detail-link">
-                       <a class="button" href="#" alt="product name" onclick="openDetails('.$product_id.')">Weitere Details</a>
-                   </div>
+		        </a>
                 </div>
+                </div>
+                <div class="bottom-pdetails">
+                <div class="bottom-brand" style="text-align:left">
+                    <div class="partner_shop"> Partner-Shop</div>
+                    <div class="brand_name">'.$merchant_name.'</div>
+                </div>
+               <div class="product-detail-link">
+                       <a class="button" href="#" alt="product name" onclick="openDetails('.$product_id.')">Weitere Details</a>
+               </div>
+               
+                 </div>  
             </div>
+        </div>
             <!-- The Modal -->
             <div id="myModal_'.$product_id.'" class="modal">
         
@@ -150,15 +167,33 @@ if($price=='0 and 300'){
                         <div class="pd-right-box">
                             <div class="pd-product-name">'.$product_name.'</div>
                            <div class="pd-right-top-box">'.$description.'</div>
+                        <div class="list-items">
+                            <ul class="item_list">
+                                <li><span class="item">Marke: </span><span class="item-value">'.$merchant_name.'</span></li>
+                                <li><span class="item">Brand name: </span><span class="item-value">'.$brand_name.'</span></li>
+                                <li><span class="item">Dimensions: </span><span class="item-value">'.$dimensions.'</span></li>
+                                <li><span class="item">Matress cover: </span><span class="item-value">'.$matress_cover.'</span></li>
+                                <li><span class="item">Sleep type: </span><span class="item-value">'.$sleepVal.'</span></li>
+                                <li><span class="item">Sweat: </span><span class="item-value">'.$sweatVal.'</span></li>
+                                <li><span class="item">Weight: </span><span class="item-value">'.$weightVal.'</span></li>
+                            </ul>
+                        </div>
+
+
+
+
                             <div class="pd-right-bottom-box">
                                 <div class="current-price-txt">Preis</div>
-                                <div class="before-price-txt">Alter Preis</div>
+                                
+                                <div class="partner_shop"> Partner-Shop</div>
+                   
                                 <div class="current-price">'.$search_price.'</div>
-                                <div class="before-price">'.$product_price_old.'</div>
+                                <div class="brand_name">'.$merchant_name.'</div>
                                 <div class="tax-shipping">inkl. 19 % MwSt zzgl. <a class="gm_shipping_link lightbox_iframe" href="https://www.refluxis.de/popup/versandkosten.html" target="_self" rel="nofollow" data-modal-settings="{&quot;title&quot;:&quot;Versand&quot;, &quot;sectionSelector&quot;: &quot;.content_text&quot;, &quot;bootstrapClass&quot;: &quot;modal-lg&quot;}">
                                     <span style="text-decoration:underline">Versand</span>
                                 </a></div>
                             </div>
+                            
                             <div class="pd-product-detail-link">
                                 <a class="pd-button" target="_blank" href="'.$aw_deep_link.'" alt="product name">Zum Shop</a>
                             </div>
